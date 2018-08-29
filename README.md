@@ -8,7 +8,7 @@ This sets up a tinc VPN between several servers. It also adds /etc/hosts entries
 
 Your local machine (where Ansible is installed) must be able to log in to the remote servers as "root", preferably with passwordless public SSH key, which is specified as the `remote_user` in `/ansible.cfg`.
 
-By default, this playbook will bind tinc to the IP address on the `eth1` interface (private network interface on DigitalOcean Droplets). See the "Review Group Variables" section to change this.
+By default, this playbook will bind tinc to the IP address on the `default` interface. So this fork works with servers, where no second network interface is available. The VPN is established over your public interfaces.
 
 ## Preparation
 
@@ -37,7 +37,6 @@ The first line, `[vpn]`, specifies that the host entries directly below it are p
 
 The `/roles/tinc/vars/main.yml` file contains a few values that you may want to modify.
 
-- `physical_ip` specifies which IP address you want tinc to bind to, based on network interface name. It is set to `eth1` (ansible_eth1) by default. On DigitalOcean, `eth1` is the private network interface so *Private Networking* must be enabled unless you would rather use the public network interface (`eth0`)
 - `vpn_interface` specifies the tinc netname and vpn network interface. It's set to `vpn0` by default.
 - `vpn_netmask` specifies the netmask that the will be applied to the VPN interface. By default, it's set to `255.255.255.0`, which means that each `vpn_ip` is a Class C address which can only communicate with other hosts within the same subnet. For example, a `10.0.0.x` will not be able to communicate with a `10.0.1.x` host unless the subnet is enlarged by changing `vpn_netmask` to something like `255.255.0.0`.
 
