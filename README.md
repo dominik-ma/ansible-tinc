@@ -1,8 +1,8 @@
 # Introduction
 
-Ansible playbook used at https://codengine.io to configure tinc mesh VPN network , tested on Debian 9, Ubuntu 18.04 and Ubuntu 16.04
+Based on the Ansible playbook used at https://codengine.io to configure tinc mesh VPN network , tested on Debian 9, Ubuntu 18.04 and Ubuntu 16.04
 
-This sets up a tinc VPN between several servers. It also adds /etc/hosts entries for the inventory hostnames to resolve to the VPN IP addresses.
+This sets up a tinc VPN between several servers (via default public IP network interface). It also adds /etc/hosts entries for the inventory hostnames to resolve to the VPN IP addresses.
 
 ## Prerequisites
 
