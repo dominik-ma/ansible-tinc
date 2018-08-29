@@ -9,6 +9,11 @@
   package: >
     name=rsync
     state=latest
+    
+- name: install net-tools
+  package: >
+    name=net-tools
+    state=latest
 
 - name: create tinc systemd service file (debian 9 & ubuntu 18)
   template: >
